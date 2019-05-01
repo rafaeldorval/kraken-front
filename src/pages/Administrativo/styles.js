@@ -10,29 +10,14 @@ export const Container = styled.div`
   span {
     font-size: 35px;
   }
-
-  button {
-    width: 270px;
-    height: 60px;
-    background: transparent;
-    color: white;
-    font-weight: 600;
-    font-size: 16px;
-    border: 1px solid #1fd1ce;
-
-    &:hover {
-      background: #1fd1ce;
-      border: 1px solid white;
-      color: inherit;
-    }
-  }
 `;
 
 export const Form = styled.form`
   div {
     display: flex;
+    justify-content: center;
     flex-direction: row;
-    margin: 100px;
+    margin: 70px;
 
     input {
       color: white;
@@ -41,10 +26,6 @@ export const Form = styled.form`
       border: none;
       border-bottom: 1px solid #1fd1ce;
       background: transparent;
-
-      &::placeholder {
-        color: white;
-      }
     }
 
     select {
@@ -70,8 +51,22 @@ export const Form = styled.form`
 
       &::placeholder {
         font-family: "Montserrat", sans-serif;
-        color: white;
       }
+    }
+  }
+
+  button {
+    width: 270px;
+    height: 60px;
+    background: transparent;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    border: 1px solid #1fd1ce;
+
+    &:hover {
+      background: #1fd1ce;
+      border: 1px solid white;
     }
   }
 `;

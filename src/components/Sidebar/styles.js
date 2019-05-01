@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Container = styled.aside`
   padding: 20px 20px;
   display: flex;
+  position: fixed;
   flex-direction: column;
   height: 100%;
   width: 240px;
@@ -53,7 +54,7 @@ export const Nav = styled.ul`
       padding: 5px;
       line-height: 30px;
       font-weight: 500;
-      font-size: 16px;
+      font-size: 14px;
       text-decoration: none;
 
       span {

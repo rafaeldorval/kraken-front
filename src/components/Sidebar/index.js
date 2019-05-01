@@ -6,7 +6,8 @@ import { Container, Nav, Profile, Content } from "./styles";
 import Thumbnail from "../../assets/images/thumbnail.jpeg";
 import Logo from "../../assets/images/logo.png";
 import {
-  FaHome,
+  FaTh,
+  FaWrench,
   FaFolderPlus,
   FaFileAlt,
   FaUserCog,
@@ -23,25 +24,31 @@ const Sidebar = () => (
       <Nav>
         <li>
           <Link to="/">
-            <FaHome fontSize={22} />
+            <FaTh fontSize={20} />
             <span>Home</span>
           </Link>
         </li>
         <li>
           <Link to="/admin">
-            <FaFolderPlus fontSize={22} />
+            <FaFolderPlus fontSize={20} />
             <span>Administrativo</span>
           </Link>
         </li>
         <li>
-          <Link to="">
-            <FaFileAlt fontSize={22} />
+          <Link to="/report">
+            <FaFileAlt fontSize={20} />
             <span>Relatorios</span>
           </Link>
         </li>
         <li>
           <Link to="">
-            <FaUserCog fontSize={22} />
+            <FaWrench fontSize={20} />
+            <span>Volvo</span>
+          </Link>
+        </li>
+        <li>
+          <Link to="">
+            <FaUserCog fontSize={20} />
             <span>Usuarios</span>
           </Link>
         </li>
@@ -49,7 +56,7 @@ const Sidebar = () => (
       <Nav logo>
         <li>
           <Link to="">
-            <FaPowerOff fontSize={22} />
+            <FaPowerOff fontSize={20} />
             <span>Sair</span>
           </Link>
           <img src={Logo} alt="logo kraken" />

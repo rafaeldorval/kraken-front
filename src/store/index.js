@@ -4,29 +4,23 @@ import createSagamiddleware from "redux-saga";
 import sagas from "./sagas";
 import reducers from "./ducks";
 
-const middlewares = [];
-
 const sagaMonitor =
   process.env.NODE_ENV === "development"
     ? console.tron.createSagaMonitor()
     : null;
 
 const sagaMiddleware = createSagamiddleware({ sagaMonitor });
+const middlewares = [sagaMiddleware];
 
-middlewares.push(sagaMiddleware);
-
-const tronMiddleware =
+const composer =
   process.env.NODE_ENV === "development"
-    ? console.tron.createEnhancer
-    : () => {};
+    ? compose(
+        applyMiddleware(...middlewares),
+        console.tron.createEnhancer()
+      )
+    : applyMiddleware(...middlewares);
 
-const store = createStore(
-  reducers,
-  compose(
-    applyMiddleware(...middlewares),
-    tronMiddleware()
-  )
-);
+const store = createStore(reducers, composer);
 
 sagaMiddleware.run(sagas);
 
