@@ -1,0 +1,47 @@
+.ReactTable .-pagination .-next,
+.ReactTable .-pagination .-previous {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ReactTable .-pagination .-btn {
+  background: transparent;
+  color: white;
+  width: 80px;
+  border: 1px solid white;
+}
+
+.ReactTable .-pagination .-btn:hover {
+  color: #3cb371;
+  border: 1px solid #3cb371;
+}
+
+.ReactTable .-pagination input,
+.ReactTable .-pagination select {
+  background: #030c13;
+  color: white;
+  border: 1px solid white;
+}
+
+.ReactTable .rt-thead .rt-th.-sort-asc,
+.ReactTable .rt-thead .rt-td.-sort-asc {
+  box-shadow: inset 0 3px 0 0 white;
+}
+
+.ReactTable .rt-thead .rt-th.-sort-desc,
+.ReactTable .rt-thead .rt-td.-sort-desc {
+  box-shadow: inset 0 -3px 0 0 white;
+}
+
+.ReactTable .rt-thead.-filters input {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+.ReactTable .rt-thead.-filters input:focus {
+  background: transparent;
+  border: 1px solid #3cb371;
+  color: white;
+}

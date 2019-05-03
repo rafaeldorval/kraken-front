@@ -1,133 +1,80 @@
 import React, { Component } from "react";
+import Spinner from "react-loader-spinner";
 
-import ReactTable from "react-table";
-import "react-table/react-table.css";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Creators as RelatoriosActions } from "../../store/ducks/relatorio";
 
-import { Container } from "./styles";
+import DataTable from "../../components/DataTable";
+import { Container, Content, Movimentacao, Funcionarios } from "./styles";
 
 class Relatorios extends Component {
   state = {
-    columns: [
-      { accessor: "name", Header: "Name" },
-      { accessor: "sex", Header: "Sex" },
-      { accessor: "city", Header: "City" },
-      { accessor: "car", Header: "Car" }
+    columnsAtivos: [
+      { accessor: "tipoAtivo.tipo", Header: "Em uso" },
+      { accessor: "identificador", Header: "ServiceTag" },
+      { accessor: "modelo", Header: "Modelo" },
+      { accessor: "valor", Header: "Valor" },
+      { accessor: "alocacao.nome", Header: "Alocação" },
+      { accessor: "alocacao.setor", Header: "Setor" },
+      { accessor: "alocacao.filial", Header: "Filial" }
     ],
-    rows: [
-      { sex: "Female", name: "Sandra", city: "Las Vegas", car: "Audi A4" },
-      { sex: "Male", name: "Paul", city: "Paris", car: "Nissan Altima" },
-      { sex: "Male", name: "Mark", city: "Paris", car: "Honda Accord" },
-      { sex: "Male", name: "Paul", city: "Paris", car: "Nissan Altima" },
-      { sex: "Female", name: "Linda", city: "Austin", car: "Toyota Corolla" },
-      {
-        sex: "Male",
-        name: "Robert",
-        city: "Las Vegas",
-        car: "Chevrolet Cruze"
-      },
-      { sex: "Female", name: "Lisa", city: "London", car: "BMW 750" },
-      { sex: "Male", name: "Mark", city: "Chicago", car: "Toyota Corolla" },
-      {
-        sex: "Male",
-        name: "Thomas",
-        city: "Rio de Janeiro",
-        car: "Honda Accord"
-      },
-      { sex: "Male", name: "Robert", city: "Las Vegas", car: "Honda Civic" },
-      { sex: "Female", name: "Betty", city: "Paris", car: "Honda Civic" },
-      {
-        sex: "Male",
-        name: "Robert",
-        city: "Los Angeles",
-        car: "Honda Accord"
-      },
-      {
-        sex: "Male",
-        name: "William",
-        city: "Los Angeles",
-        car: "Honda Civic"
-      },
-      { sex: "Female", name: "Sandra", city: "Las Vegas", car: "Audi A4" },
-      { sex: "Male", name: "Paul", city: "Paris", car: "Nissan Altima" },
-      { sex: "Male", name: "Mark", city: "Paris", car: "Honda Accord" },
-      { sex: "Male", name: "Paul", city: "Paris", car: "Nissan Altima" },
-      { sex: "Female", name: "Linda", city: "Austin", car: "Toyota Corolla" },
-      {
-        sex: "Male",
-        name: "Robert",
-        city: "Las Vegas",
-        car: "Chevrolet Cruze"
-      },
-      { sex: "Female", name: "Lisa", city: "London", car: "BMW 750" },
-      { sex: "Male", name: "Mark", city: "Chicago", car: "Toyota Corolla" },
-      {
-        sex: "Male",
-        name: "Thomas",
-        city: "Rio de Janeiro",
-        car: "Honda Accord"
-      },
-      { sex: "Male", name: "Robert", city: "Las Vegas", car: "Honda Civic" },
-      { sex: "Female", name: "Betty", city: "Paris", car: "Honda Civic" },
-      {
-        sex: "Male",
-        name: "Robert",
-        city: "Los Angeles",
-        car: "Honda Accord"
-      },
-      {
-        sex: "Male",
-        name: "William",
-        city: "Los Angeles",
-        car: "Honda Civic"
-      },
-      { sex: "Female", name: "Sandra", city: "Las Vegas", car: "Audi A4" },
-      { sex: "Male", name: "Paul", city: "Paris", car: "Nissan Altima" },
-      { sex: "Male", name: "Mark", city: "Paris", car: "Honda Accord" },
-      { sex: "Male", name: "Paul", city: "Paris", car: "Nissan Altima" },
-      { sex: "Female", name: "Linda", city: "Austin", car: "Toyota Corolla" },
-      {
-        sex: "Male",
-        name: "Robert",
-        city: "Las Vegas",
-        car: "Chevrolet Cruze"
-      },
-      { sex: "Female", name: "Lisa", city: "London", car: "BMW 750" },
-      { sex: "Male", name: "Mark", city: "Chicago", car: "Toyota Corolla" },
-      {
-        sex: "Male",
-        name: "Thomas",
-        city: "Rio de Janeiro",
-        car: "Honda Accord"
-      },
-      { sex: "Male", name: "Robert", city: "Las Vegas", car: "Honda Civic" },
-      { sex: "Female", name: "Betty", city: "Paris", car: "Honda Civic" },
-      {
-        sex: "Male",
-        name: "Robert",
-        city: "Los Angeles",
-        car: "Honda Accord"
-      },
-      {
-        sex: "Male",
-        name: "William",
-        city: "Los Angeles",
-        car: "Honda Civic"
-      },
-      { sex: "Male", name: "Mark", city: "Austin", car: "Nissan Altima" }
+    columnsFunc: [
+      { accessor: "nome", Header: "Nome" },
+      { accessor: "email", Header: "Email" },
+      { accessor: "setor", Header: "Setor" },
+      { accessor: "filial", Header: "Filial" }
     ]
   };
+
+  componentDidMount() {
+    this.handleDataRelatorio();
+  }
+
+  handleDataRelatorio = () => {
+    this.props.getDataRequest("/ativo/show");
+    console.log(this.props.relatorio);
+  };
+
   render() {
+    const { relatorio } = this.props;
     return (
       <Container>
-        <ReactTable
-          filterable
-          data={this.state.rows}
-          columns={this.state.columns}
-          style={{ width: 900, color: "white", background: "#0A1825" }}
-        />
+        <Movimentacao>
+          <h3>Movimentação de ativos</h3>
+          {relatorio.loading ? (
+            <Spinner type="Triangle" color="#1fd1ce" width={50} height={50} />
+          ) : (
+            <Content>
+              <DataTable
+                columns={this.state.columnsAtivos}
+                data={relatorio.data}
+              />
+            </Content>
+          )}
+        </Movimentacao>
+        <Funcionarios>
+          <h3>Funcionarios cadastrados</h3>
+          <Content>
+            <DataTable
+              columns={this.state.columnsFunc}
+              data={relatorio.funcionarios}
+            />
+          </Content>
+        </Funcionarios>
       </Container>
     );
   }
 }
 
-export default Relatorios;
+const mapStateToProps = state => ({
+  relatorio: state.relatorio
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(RelatoriosActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Relatorios);

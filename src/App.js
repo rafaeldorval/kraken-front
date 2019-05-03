@@ -10,20 +10,25 @@ import "./config/reactotron";
 
 import store from "./store";
 import Sidebar from "./components/Sidebar";
+import { isAuthenticated } from "./services/auth";
 
 const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Wrapper>
-          <Container>
-            <Sidebar />
-            <Content>
-              <Routes />
-            </Content>
-          </Container>
-          <CustomTheme />
-        </Wrapper>
+        <CustomTheme />
+        {!isAuthenticated ? (
+          <Routes />
+        ) : (
+          <Wrapper>
+            <Container>
+              <Sidebar />
+              <Content>
+                <Routes />
+              </Content>
+            </Container>
+          </Wrapper>
+        )}
       </BrowserRouter>
     </Provider>
   );

@@ -7,7 +7,8 @@ export const Container = styled.aside`
   flex-direction: column;
   height: 100%;
   width: 240px;
-  background: linear-gradient(to bottom, #001c2d 20%, #0a1825);
+  /* background: linear-gradient(to bottom, #001c2d 20%, #0a1825); */
+  background: #13934a;
 `;
 
 export const Profile = styled.div`
@@ -17,7 +18,7 @@ export const Profile = styled.div`
 
   img {
     width: 95px;
-    border: 1.5px solid #1fd1ce;
+    border: 1.5px solid white;
     padding: 1px;
     border-radius: 50%;
   }
@@ -38,7 +39,7 @@ export const Content = styled.div`
 
 export const Nav = styled.ul`
   list-style: none;
-  border-top: 1px solid #1fd1ce;
+  border-top: 2px solid white;
   padding: 15px 0;
 
   li {
@@ -47,9 +48,10 @@ export const Nav = styled.ul`
     align-items: center;
 
     a {
+      width: 100%;
       display: flex;
       align-items: center;
-      color: #d1d1d1;
+      color: #f7f7f7;
       letter-spacing: 0.5px;
       padding: 5px;
       line-height: 30px;
@@ -62,10 +64,11 @@ export const Nav = styled.ul`
       }
 
       &:hover {
-        color: #1fd1ce;
+        color: white;
         font-weight: 600;
       }
     }
+
     img {
       height: 50px;
       opacity: 0.3;

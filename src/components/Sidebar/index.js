@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { Container, Nav, Profile, Content } from "./styles";
 
@@ -14,7 +14,7 @@ import {
   FaPowerOff
 } from "react-icons/fa";
 
-const Sidebar = () => (
+const Sidebar = props => (
   <Container>
     <Profile>
       <img src={Thumbnail} alt="thumbnail" />
@@ -23,42 +23,42 @@ const Sidebar = () => (
     <Content>
       <Nav>
         <li>
-          <Link to="/">
+          <NavLink to="/app">
             <FaTh fontSize={20} />
             <span>Home</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/admin">
+          <NavLink to="/app/admin">
             <FaFolderPlus fontSize={20} />
             <span>Administrativo</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/report">
+          <NavLink to="/app/report">
             <FaFileAlt fontSize={20} />
             <span>Relatorios</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="">
+          <NavLink to="">
             <FaWrench fontSize={20} />
             <span>Volvo</span>
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="">
+          <NavLink to="">
             <FaUserCog fontSize={20} />
             <span>Usuarios</span>
-          </Link>
+          </NavLink>
         </li>
       </Nav>
       <Nav logo>
         <li>
-          <Link to="">
+          <NavLink to="">
             <FaPowerOff fontSize={20} />
             <span>Sair</span>
-          </Link>
+          </NavLink>
           <img src={Logo} alt="logo kraken" />
         </li>
       </Nav>

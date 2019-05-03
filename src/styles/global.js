@@ -14,7 +14,7 @@ const CustomTheme = createGlobalStyle`
   body {
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
-    background: #0A1825;
+    background: #030c14;
     font-family: 'Montserrat', sans-serif;
     color: #fff
   }
