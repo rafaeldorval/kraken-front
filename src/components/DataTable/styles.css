@@ -13,13 +13,13 @@
 }
 
 .ReactTable .-pagination .-btn:hover {
-  color: #3cb371;
-  border: 1px solid #3cb371;
+  color: #028dce;
+  border: 1px solid #028dce;
 }
 
 .ReactTable .-pagination input,
 .ReactTable .-pagination select {
-  background: #030c13;
+  background: #30373e;
   color: white;
   border: 1px solid white;
 }
@@ -42,6 +42,6 @@
 
 .ReactTable .rt-thead.-filters input:focus {
   background: transparent;
-  border: 1px solid #3cb371;
+  border: 1px solid #028dce;
   color: white;
 }

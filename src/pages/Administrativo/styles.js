@@ -22,8 +22,8 @@ export const Container = styled.div`
   }
 
   button:hover {
-    color: #3cb371;
-    border: 1px solid #3cb371;
+    color: #028dce;
+    border: 1px solid #028dce;
   }
 `;
 
@@ -44,7 +44,7 @@ export const Form = styled.form`
     }
 
     input:focus {
-      border-bottom: 1px solid #3cb371;
+      border-bottom: 1px solid #028dce;
     }
 
     select {
@@ -57,13 +57,13 @@ export const Form = styled.form`
 
       option {
         border: none;
-        background: #0a1825;
+        background: #30373e;
         color: white;
       }
     }
 
     select:focus {
-      border-bottom: 1px solid #3cb371;
+      border-bottom: 1px solid #028dce;
     }
 
     textarea {
@@ -78,7 +78,7 @@ export const Form = styled.form`
     }
 
     textarea:focus {
-      border: 1px solid #3cb371;
+      border: 1px solid #028dce;
     }
   }
 
@@ -92,7 +92,7 @@ export const Form = styled.form`
     border: 1px solid white;
 
     &:hover {
-      border: 1px solid #3cb371;
+      border: 1px solid #028dce;
     }
   }
 `;
@@ -110,7 +110,7 @@ export const CustomModal = styled(ReactModal)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: #030c13;
+  background: #30373e;
 `;
 
 export const ContentModal = styled.div`
@@ -144,6 +144,10 @@ export const ContentModal = styled.div`
         border: none;
         border-bottom: 1px solid white;
         color: white;
+      }
+
+      input:hover {
+        border-bottom: 1px solid #028dce;
       }
     }
   }

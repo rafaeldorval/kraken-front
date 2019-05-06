@@ -20,7 +20,7 @@ const DataTable = ({ columns, data }) => {
       data={data}
       columns={columns}
       defaultPageSize={5}
-      style={{ width: 900, color: "white", background: "#030c14" }}
+      style={{ width: 900, color: "white", background: "#30373E" }}
     />
   );
 };

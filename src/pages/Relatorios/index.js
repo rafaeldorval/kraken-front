@@ -11,7 +11,7 @@ import { Container, Content, Movimentacao, Funcionarios } from "./styles";
 class Relatorios extends Component {
   state = {
     columnsAtivos: [
-      { accessor: "tipoAtivo.tipo", Header: "Em uso" },
+      { accessor: "tipoAtivo.tipo", Header: "Tipo" },
       { accessor: "identificador", Header: "ServiceTag" },
       { accessor: "modelo", Header: "Modelo" },
       { accessor: "valor", Header: "Valor" },

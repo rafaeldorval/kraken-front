@@ -1,8 +1,10 @@
 import { createStore, compose, applyMiddleware } from "redux";
+import { connectRouter, routerMiddleware } from "connected-react-router";
 import createSagamiddleware from "redux-saga";
 
 import sagas from "./sagas";
 import reducers from "./ducks";
+import history from "../routes/history";
 
 const sagaMonitor =
   process.env.NODE_ENV === "development"
@@ -10,7 +12,7 @@ const sagaMonitor =
     : null;
 
 const sagaMiddleware = createSagamiddleware({ sagaMonitor });
-const middlewares = [sagaMiddleware];
+const middlewares = [sagaMiddleware, routerMiddleware(history)];
 
 const composer =
   process.env.NODE_ENV === "development"
@@ -20,7 +22,7 @@ const composer =
       )
     : applyMiddleware(...middlewares);
 
-const store = createStore(reducers, composer);
+const store = createStore(connectRouter(history)(reducers), composer);
 
 sagaMiddleware.run(sagas);
 

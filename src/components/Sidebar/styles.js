@@ -7,8 +7,7 @@ export const Container = styled.aside`
   flex-direction: column;
   height: 100%;
   width: 240px;
-  /* background: linear-gradient(to bottom, #001c2d 20%, #0a1825); */
-  background: #13934a;
+  background: #2b3238;
 `;
 
 export const Profile = styled.div`

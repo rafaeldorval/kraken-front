@@ -80,6 +80,7 @@ class Administrativo extends Component {
               <option disabled>Tipo de ativo</option>
               <option value="computador">computador</option>
               <option value="mobile">mobile</option>
+              <option value="chave">chave</option>
             </select>
             <input
               autoComplete="off"
