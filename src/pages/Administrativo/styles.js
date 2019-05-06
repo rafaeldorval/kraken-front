@@ -32,7 +32,7 @@ export const Form = styled.form`
     display: flex;
     justify-content: center;
     flex-direction: row;
-    margin: 70px;
+    margin: 40px;
 
     input {
       color: white;
@@ -45,6 +45,11 @@ export const Form = styled.form`
 
     input:focus {
       border-bottom: 1px solid #028dce;
+    }
+
+    input:disabled {
+      background: #3e4751;
+      border-bottom: 1px solid #3e4751;
     }
 
     select {

@@ -17,3 +17,8 @@ export function* userLogin(action) {
     console.log(err);
   }
 }
+
+export function* userLogout() {
+  localStorage.removeItem(TOKEN_KEY);
+  yield put(push("/login"));
+}

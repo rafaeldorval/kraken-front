@@ -90,13 +90,11 @@ class Administrativo extends Component {
             />
           </div>
           <div>
-            <input
-              autoComplete="off"
-              placeholder="Email do funcionario"
-              type="email"
-              name="alocacao"
-              onChange={handleAtivo("alocacao")}
-            />
+            <select onChange={handleAtivo("status")} defaultValue="Em uso?">
+              <option disabled>Em uso?</option>
+              <option value={true}>Sim</option>
+              <option value={false}>Não</option>
+            </select>
             <input
               autoComplete="off"
               placeholder="Modelo"
@@ -109,6 +107,16 @@ class Administrativo extends Component {
               type="number"
               name="valor"
               onChange={handleAtivo("valor")}
+            />
+          </div>
+          <div>
+            <input
+              disabled={this.state.ativo.status === "false"}
+              autoComplete="off"
+              placeholder="Email do funcionario"
+              type="email"
+              name="alocacao"
+              onChange={handleAtivo("alocacao")}
             />
           </div>
           <div>

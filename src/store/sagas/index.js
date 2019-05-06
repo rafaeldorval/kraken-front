@@ -8,7 +8,7 @@ import { Types as UserTypes } from "../ducks/user";
 import { createAtivo } from "./ativo";
 import { getRelatorioData, getFuncionarios } from "./relatorio";
 import { createFuncionarios } from "./funcionario";
-import { userLogin } from "./user";
+import { userLogin, userLogout } from "./user";
 
 export default function* rootSaga() {
   yield all([
@@ -16,6 +16,7 @@ export default function* rootSaga() {
     takeLatest(RelatoriosTypes.DATA_REQUEST, getRelatorioData),
     takeLatest(RelatoriosTypes.DATA_REQUEST, getFuncionarios),
     takeLatest(FuncionarioTypes.FUNC_REQUEST, createFuncionarios),
-    takeLatest(UserTypes.LOGIN_REQUEST, userLogin)
+    takeLatest(UserTypes.LOGIN_REQUEST, userLogin),
+    takeLatest(UserTypes.LOGOUT, userLogout)
   ]);
 }

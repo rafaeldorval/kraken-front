@@ -1,6 +1,7 @@
 export const Types = {
   LOGIN_REQUEST: "user/LOGIN_REQUEST",
-  LOGIN_SUCCESS: "user/LOGIN_SUCCESS"
+  LOGIN_SUCCESS: "user/LOGIN_SUCCESS",
+  LOGOUT: "user/LOGOUT"
 };
 
 const INITIAL_STATE = {
@@ -19,6 +20,8 @@ export default function user(state = INITIAL_STATE, action) {
         userName: action.payload.userName,
         user: null
       };
+    case Types.LOGOUT:
+      return { ...state, userName: "" };
     default:
       return state;
   }
@@ -33,5 +36,7 @@ export const Creators = {
   getLoginSuccess: userName => ({
     type: Types.LOGIN_SUCCESS,
     payload: { userName }
-  })
+  }),
+
+  logout: () => ({ type: Types.LOGOUT })
 };

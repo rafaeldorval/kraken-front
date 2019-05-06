@@ -3,6 +3,9 @@ import ContUp from "react-countup";
 
 export const Container = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Header = styled.div`
@@ -31,4 +34,14 @@ export const Cont = styled(ContUp)`
   font-size: 50px;
   color: #bebebe;
   margin: 15px;
+`;
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    font-size: 19px;
+  }
 `;

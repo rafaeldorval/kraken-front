@@ -33,7 +33,6 @@ class Relatorios extends Component {
 
   handleDataRelatorio = () => {
     this.props.getDataRequest("/ativo/show");
-    console.log(this.props.relatorio);
   };
 
   render() {

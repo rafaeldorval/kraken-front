@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Creators as UserActions } from "../../store/ducks/user";
 import { NavLink } from "react-router-dom";
 import { isAuthenticated } from "../../services/auth";
 
@@ -16,7 +18,7 @@ import {
   FaPowerOff
 } from "react-icons/fa";
 
-const Sidebar = ({ user }) =>
+const Sidebar = ({ user, logout }) =>
   !isAuthenticated() ? null : (
     <Container>
       <Profile>
@@ -58,7 +60,7 @@ const Sidebar = ({ user }) =>
         </Nav>
         <Nav logo>
           <li>
-            <NavLink to="">
+            <NavLink to="" onClick={logout}>
               <FaPowerOff fontSize={20} />
               <span>Sair</span>
             </NavLink>
@@ -73,4 +75,10 @@ const mapStateToProps = state => ({
   user: state.user
 });
 
-export default connect(mapStateToProps)(Sidebar);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(UserActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Sidebar);
