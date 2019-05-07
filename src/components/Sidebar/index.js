@@ -7,14 +7,13 @@ import { isAuthenticated } from "../../services/auth";
 
 import { Container, Nav, Profile, Content } from "./styles";
 
-import Thumbnail from "../../assets/images/thumbnail.jpeg";
+import Thumbnail from "../../assets/images/thumbnail.png";
 import Logo from "../../assets/images/logo.png";
 import {
   FaTh,
   FaWrench,
   FaFolderPlus,
   FaFileAlt,
-  FaUserCog,
   FaPowerOff
 } from "react-icons/fa";
 
@@ -46,15 +45,9 @@ const Sidebar = ({ user, logout }) =>
             </NavLink>
           </li>
           <li>
-            <NavLink to="">
+            <NavLink to="/app/volvo">
               <FaWrench fontSize={20} />
               <span>Volvo</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="">
-              <FaUserCog fontSize={20} />
-              <span>Usuarios</span>
             </NavLink>
           </li>
         </Nav>

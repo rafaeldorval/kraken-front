@@ -62,7 +62,7 @@ class Home extends Component {
             <YAxis />
             <Tooltip />
             <Area
-              type="monotone"
+              type="linear"
               dataKey="alocacao.filial"
               stackId="1"
               stroke="#8884d8"

@@ -19,8 +19,22 @@ export function* createAtivo(action) {
 
 export function* deleteAtivo({ payload: { id } }) {
   try {
+    // eslint-disable-next-line
     const response = yield call(api.delete, `/ativo/delete/${id}`);
   } catch (err) {
     console.log(err);
+  }
+}
+
+export function* updateAtivo({ payload }) {
+  try {
+    // eslint-disable-next-line
+    const response = yield call(
+      api.put,
+      `/ativo/update/${payload.id}`,
+      payload.ativo
+    );
+  } catch (error) {
+    console.log(error);
   }
 }

@@ -5,14 +5,16 @@ import { Wrapper, Container, Content } from "./styles";
 import Sidebar from "../../components/Sidebar";
 
 import Home from "../../pages/Home";
+import Volvo from "../../pages/Volvo";
 import Administrativo from "../../pages/Administrativo";
 import Relatorios from "../../pages/Relatorios";
 
 const Routes = () => (
   <Switch>
     <Route exact path="/app" component={Home} />
-    <Route path="/app/admin" component={Administrativo} />
-    <Route path="/app/report" component={Relatorios} />
+    <Route exact path="/app/volvo" component={Volvo} />
+    <Route exact path="/app/admin" component={Administrativo} />
+    <Route exact path="/app/report" component={Relatorios} />
   </Switch>
 );
 

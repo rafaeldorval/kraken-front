@@ -12,6 +12,10 @@ import DataTable from "../../components/DataTable";
 import {
   Container,
   Content,
+  Modal,
+  CustomModal,
+  ContentModal,
+  Button,
   Movimentacao,
   Funcionarios,
   ActionTable
@@ -19,6 +23,9 @@ import {
 
 class Relatorios extends Component {
   state = {
+    open: false,
+    id: "",
+    ativo: {},
     columnsAtivos: [
       { accessor: "tipoAtivo.tipo", Header: "Tipo" },
       { accessor: "identificador", Header: "ServiceTag" },
@@ -33,13 +40,17 @@ class Relatorios extends Component {
         filterable: false,
         Cell: ({ original }) => (
           <ActionTable>
-            <button className="edit">
-              <FaPen onClick={() => console.log(original)} />
+            <button
+              className="edit"
+              onClick={() => this.handleOpenModal(original._id)}
+            >
+              <FaPen />
             </button>
-            <button className="delete">
-              <FaTrashAlt
-                onClick={() => this.handleDeleteAtivo(original._id)}
-              />
+            <button
+              className="delete"
+              onClick={() => this.handleDeleteAtivo(original._id)}
+            >
+              <FaTrashAlt />
             </button>
           </ActionTable>
         )
@@ -66,7 +77,25 @@ class Relatorios extends Component {
       this.props.deleteAtivo(id);
       return this.props.getDataRequest("/ativo/show");
     }
-    return console.log("Cancelado");
+    return null;
+  };
+
+  handleOpenModal = id => {
+    this.setState({ open: !this.state.open, id });
+  };
+
+  handleAtivo = name => ({ target: { value } }) => {
+    this.setState({
+      ativo: { ...this.state.ativo, [name]: value }
+    });
+  };
+
+  handleUpdateAtivo = event => {
+    const { id, ativo } = this.state;
+    event.preventDefault();
+    this.props.updateAtivo(id, ativo);
+    this.setState({ ativo: "", open: false });
+    this.handleDataRelatorio();
   };
 
   render() {
@@ -95,6 +124,54 @@ class Relatorios extends Component {
             />
           </Content>
         </Funcionarios>
+        <Modal>
+          <CustomModal
+            style={{
+              overlay: { background: "rgba(0, 0, 0, 0.5)" }
+            }}
+            isOpen={this.state.open}
+            contentLabel="onRequestClose Example"
+            onRequestClose={this.handleOpenModal}
+            shouldCloseOnOverlayClick={true}
+          >
+            <ContentModal>
+              <span>Atualizar ativo</span>
+              <form onSubmit={this.handleUpdateAtivo}>
+                <div>
+                  <input
+                    onChange={this.handleAtivo("alocacao")}
+                    name="alocacao"
+                    autoComplete="off"
+                    placeholder="Email do novo funcionario"
+                  />
+                  <input
+                    onChange={this.handleAtivo("valor")}
+                    name="valor"
+                    autoComplete="off"
+                    placeholder="Novo valor"
+                  />
+                </div>
+                <div>
+                  <textarea
+                    onChange={this.handleAtivo("configuracao")}
+                    name="configuracao"
+                    autoComplete="off"
+                    placeholder="Configuracao"
+                  />
+                </div>
+                <div>
+                  <Button type="submit">Salvar</Button>
+                  <Button
+                    cancel
+                    onClick={() => this.setState({ open: !this.state.open })}
+                  >
+                    Cancelar
+                  </Button>
+                </div>
+              </form>
+            </ContentModal>
+          </CustomModal>
+        </Modal>
       </Container>
     );
   }

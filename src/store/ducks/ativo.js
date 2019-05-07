@@ -1,6 +1,7 @@
 export const Types = {
   CREATE_REQUEST: "ativo/CREATE_REQUEST",
   CREATE_SUCCESS: "ativo/CREATE_SUCCESS",
+  UPDATE: "ativo/UPDATE",
   DESTROY: "ativo/DESTROY"
 };
 
@@ -20,6 +21,8 @@ export default function ativo(state = INITIAL_STATE, action) {
         loading: false,
         data: [...state.data, action.payload.data]
       };
+    case Types.UPDATE:
+      return { ...state, ativo: action.payload.ativo };
     case Types.DESTROY:
       return { ...state, loading: false };
     default:
@@ -39,5 +42,9 @@ export const Creators = {
   deleteAtivo: id => ({
     type: Types.DESTROY,
     payload: { id }
+  }),
+  updateAtivo: (id, ativo) => ({
+    type: Types.UPDATE,
+    payload: { id, ativo }
   })
 };
