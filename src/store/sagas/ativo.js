@@ -16,3 +16,11 @@ export function* createAtivo(action) {
     console.log(err);
   }
 }
+
+export function* deleteAtivo({ payload: { id } }) {
+  try {
+    const response = yield call(api.delete, `/ativo/delete/${id}`);
+  } catch (err) {
+    console.log(err);
+  }
+}

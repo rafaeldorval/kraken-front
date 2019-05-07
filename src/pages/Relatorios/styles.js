@@ -32,3 +32,22 @@ export const Content = styled.div`
   padding: 20px 0;
   width: 100%;
 `;
+
+export const ActionTable = styled.div`
+  display: flex;
+  justify-content: space-around;
+
+  button {
+    background: transparent;
+    border: 0;
+    color: white;
+
+    &.edit:hover {
+      color: #ffd700;
+    }
+
+    &.delete:hover {
+      color: #ff4500;
+    }
+  }
+`;

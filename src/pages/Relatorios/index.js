@@ -3,10 +3,19 @@ import Spinner from "react-loader-spinner";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Creators as AtivosAction } from "../../store/ducks/ativo";
 import { Creators as RelatoriosActions } from "../../store/ducks/relatorio";
 
+import { FaTrashAlt, FaPen } from "react-icons/fa";
+
 import DataTable from "../../components/DataTable";
-import { Container, Content, Movimentacao, Funcionarios } from "./styles";
+import {
+  Container,
+  Content,
+  Movimentacao,
+  Funcionarios,
+  ActionTable
+} from "./styles";
 
 class Relatorios extends Component {
   state = {
@@ -17,7 +26,24 @@ class Relatorios extends Component {
       { accessor: "valor", Header: "Valor" },
       { accessor: "alocacao.nome", Header: "Alocação" },
       { accessor: "alocacao.setor", Header: "Setor" },
-      { accessor: "alocacao.filial", Header: "Filial" }
+      { accessor: "alocacao.filial", Header: "Filial" },
+      {
+        Header: "Ações",
+        sortable: false,
+        filterable: false,
+        Cell: ({ original }) => (
+          <ActionTable>
+            <button className="edit">
+              <FaPen onClick={() => console.log(original)} />
+            </button>
+            <button className="delete">
+              <FaTrashAlt
+                onClick={() => this.handleDeleteAtivo(original._id)}
+              />
+            </button>
+          </ActionTable>
+        )
+      }
     ],
     columnsFunc: [
       { accessor: "nome", Header: "Nome" },
@@ -33,6 +59,14 @@ class Relatorios extends Component {
 
   handleDataRelatorio = () => {
     this.props.getDataRequest("/ativo/show");
+  };
+
+  handleDeleteAtivo = id => {
+    if (window.confirm("Realmente deseja deletar esse ativo?")) {
+      this.props.deleteAtivo(id);
+      return this.props.getDataRequest("/ativo/show");
+    }
+    return console.log("Cancelado");
   };
 
   render() {
@@ -71,7 +105,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(RelatoriosActions, dispatch);
+  bindActionCreators({ ...RelatoriosActions, ...AtivosAction }, dispatch);
 
 export default connect(
   mapStateToProps,
